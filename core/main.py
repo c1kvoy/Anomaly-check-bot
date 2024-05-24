@@ -5,7 +5,7 @@ from core.settings import settings
 import logging
 
 async def anomaly_report(bot: Bot, newname: str, percent: float):
-    await bot.send_message(chat_id='-1002226165629', text=f'Акции компании {newname} изменились на {percent}%!')
+    await bot.send_message(chat_id='-1002226165629', text=f'Акции компании {newname} изменились на {round(percent, 2)}%')
 
 async def start_bot(bot: Bot):
     await bot.send_message(settings.bots.admin_id, text='Бот начал работу')
