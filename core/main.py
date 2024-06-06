@@ -24,27 +24,6 @@ dp.startup.register(start_bot)
 dp.shutdown.register(stop_bot)
 
 
-@dp.message(Command('subscribe'))
-async def send_subcribe(message: types.Message):
-    user_id = message.from_user.id
-    if not bot_db_instance.user_exists(user_id):
-        bot_db_instance.add_user(message.from_user.id)
-        await bot.send_message(user_id, "Подписка на рассылку бота оформлена!")
-    else:
-        await bot.send_message(user_id, "Вы уже подписаны на рассылку бота!")
-
-
-@dp.message(Command('unsubscribe'))
-async def send_unsubcribe(message: types.Message):
-    user_id = message.from_user.id
-    if bot_db_instance.user_exists(user_id):
-        print("delete")
-        bot_db_instance.delete_user(message.from_user.id)
-        await bot.send_message(user_id, "Подписка на рассылку приостановлена!")
-    else:
-        await bot.send_message(user_id, "Вы и так не подписаны на рассылку!")
-
-
 @dp.message(CommandStart())
 async def start(message: types.Message):
     kb = [
@@ -81,6 +60,27 @@ async def send_help(message: types.Message):
                            "рассылку об аномалиях используйте команду:</b>\n\n/subscribe\n\n<b>Для отписки от "
                            "рассылки:</b>\n\n/unsubscribe",
                            reply_markup=keyboard)
+
+
+@dp.message(Command('subscribe'))
+async def send_subcribe(message: types.Message):
+    user_id = message.from_user.id
+    if not bot_db_instance.user_exists(user_id):
+        bot_db_instance.add_user(message.from_user.id)
+        await bot.send_message(user_id, "Подписка на рассылку бота оформлена!")
+    else:
+        await bot.send_message(user_id, "Вы уже подписаны на рассылку бота!")
+
+
+@dp.message(Command('unsubscribe'))
+async def send_unsubcribe(message: types.Message):
+    user_id = message.from_user.id
+    if bot_db_instance.user_exists(user_id):
+        print("delete")
+        bot_db_instance.delete_user(message.from_user.id)
+        await bot.send_message(user_id, "Подписка на рассылку приостановлена!")
+    else:
+        await bot.send_message(user_id, "Вы и так не подписаны на рассылку!")
 
 
 async def anomaly_report(anomaly_bot: Bot, newname: str, percent: float):
