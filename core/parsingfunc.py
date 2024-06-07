@@ -14,6 +14,14 @@ def calculate_percent(data, name):
         condition = True
     return condition, change_percent, name
 
+def grafic(data, name):
+    pyplot.plot(data)
+    plt.title('График изменения цены акции', fontsize=20)
+    plt.xlabel('время')
+    plt.ylabel('цена')
+    plt.text(0.3, 3, name, fontsize=16, bbox={'facecolor':'blue', 'alpha':0.2})
+    pyplot.show()
+
 async def main():
     bot = Bot(token=settings.bots.bot_token)
     condition, percent, newname = calculate_percent(data, name)
