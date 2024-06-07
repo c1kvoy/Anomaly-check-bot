@@ -1,5 +1,6 @@
 import sqlite3
 
+
 class BotDB:
     def __init__(self, db_file):
         self.conn = sqlite3.connect(db_file)
@@ -8,7 +9,7 @@ class BotDB:
     def user_exists(self, user_id):
         result = self.cursor.execute("SELECT id FROM users WHERE user_id = ?", (user_id,))
         user = result.fetchone()
-        print(f"user_exists check for user_id {user_id}: {user}")  # Логирование результата запроса
+        print(f"user_exists check for user_id {user_id}: {user}")
         return user is not None
 
     def get_user_id(self, user_id):
@@ -26,8 +27,9 @@ class BotDB:
         return self
 
     def id_for_print(self):
-        self.cursor.execute("SELECT user_id FROM 'users'")  # Замените 'your_table_name' на название вашей таблицы
+        self.cursor.execute("SELECT user_id FROM 'users'")
         user_ids = self.cursor.fetchall()
         return user_ids
+
     def close(self):
         self.conn.close()

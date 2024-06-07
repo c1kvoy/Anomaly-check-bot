@@ -1,6 +1,7 @@
 from environs import Env
 from dataclasses import dataclass
 
+
 @dataclass
 class Bots:
     bot_token: str
