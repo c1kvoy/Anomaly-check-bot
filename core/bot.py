@@ -4,10 +4,10 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.filters import CommandStart, Command
 
 from handlers import start, send_help, send_subscribe, send_report, process_callback, send_unsubscribe
-from core.db import BotDB
-from core.settings import settings
+from db import BotDB
+from settings import settings
 
-bot_db_instance = BotDB("../../../../Documents/database/usersid.db")
+bot_db_instance = BotDB("usersid.db")
 
 
 async def start_bot():
@@ -25,7 +25,6 @@ dp.startup.register(start_bot)
 dp.shutdown.register(stop_bot)
 
 
-# Регистрация хендлеров
 @dp.message(CommandStart())
 async def start_handler(message: types.Message):
     await start(message)
@@ -64,7 +63,6 @@ async def anomaly_report(anomaly_bot: Bot, newname: str, percent: float):
         await anomaly_bot.send_message(chat_id=user_id,
                                        text=f'Акции компании <b>{newname}</b> изменились на <b>{percent:.2f}</b>%!',
                                        parse_mode="HTML")
-
 
 async def main():
     try:

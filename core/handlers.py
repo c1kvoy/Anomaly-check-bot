@@ -1,10 +1,10 @@
 from aiogram import types
 
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from core.db import BotDB
-from core.settings import settings
+from db import BotDB
+from settings import settings
 
-bot_db_instance = BotDB("../../../../Documents/database/usersid.db")
+bot_db_instance = BotDB("usersid.db")
 
 
 async def start(message: types.Message):

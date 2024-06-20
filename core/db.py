@@ -27,9 +27,10 @@ class BotDB:
         return self
 
     def id_for_print(self):
-        self.cursor.execute("SELECT user_id FROM 'users'")
+        self.cursor.execute("SELECT user_id FROM users")
         user_ids = self.cursor.fetchall()
-        return user_ids
+        return [user_id[0] for user_id in user_ids]
+
 
     def close(self):
         self.conn.close()
