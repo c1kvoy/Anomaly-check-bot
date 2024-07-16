@@ -21,7 +21,7 @@ bot_db_instance = BotDB("usersid.db")
 default_bot_properties = DefaultBotProperties(parse_mode="HTML")
 bot = Bot(token=settings.bots.bot_token, default=default_bot_properties)
 dp = Dispatcher()
-TOKEN = "t.EzH8wfOvkJ1OHLbbJnOuOr9mOQWtkjV2CeCj2BzoExUKJ-MlopP76qur-A1JFSdHommmon4FFnkW3EnPTaKVOw"
+TOKEN = ""
 CSV_FILE_PATH = "Russian_Stocks.csv"
 
 prices_data = {}
